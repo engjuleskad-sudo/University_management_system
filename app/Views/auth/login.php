@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>University Management System </title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <h1>University Management System. </h1>
@@ -11,5 +12,7 @@
     <h2>Login Page </h2>
 
     <p>Welcome, to the the University Management System. </p>
+
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
