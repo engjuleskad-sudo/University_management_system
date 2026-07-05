@@ -7,11 +7,24 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <h1>University Management System. </h1>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>University Management System. </h1>
+            <h2>Welcome Back</h2>
 
-    <h2>Login Page </h2>
+            <form>
+                <label>Email</label>
+                <input type="email" placeholder="Enter your email">
+                <label>Passeword</label>
+                <input type="password" placeholder="Enter your password">
 
-    <p>Welcome, to the the University Management System. </p>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+    </div>
+
+    
 
     <script src="assets/js/app.js"></script>
 </body>
