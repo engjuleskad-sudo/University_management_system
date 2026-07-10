@@ -1,18 +1,11 @@
 <?php
-// require_once  __DIR__  . '/../config/database.php';
 
-// try{
-//     $database=new Database();
-//     $connection=$database->connect();
-//     echo "<h1>University Management System</h1>";
-//     echo "<p>✅ Database Connected Successfuly!</p>";
 
-// }
-// catch(Exception $e){
-//     echo "<h2>Connection Failed!</h2>";
 
-//     echo $e->getMessage();
-// }
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+session_start();
 
 
 require_once __DIR__ . '/../config/database.php';
@@ -20,7 +13,7 @@ require_once __DIR__ . '/../app/Core/App.php';
 
 try{
 
-$database= new database();
+$database= new Database();
 $database->connect();
 
 $app=new App();

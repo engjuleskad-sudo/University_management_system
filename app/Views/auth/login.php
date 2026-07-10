@@ -12,11 +12,11 @@
             <h1>University Management System. </h1>
             <h2>Welcome Back</h2>
 
-            <form>
+            <form action="?page=login" method="POST">
                 <label>Email</label>
-                <input type="email" placeholder="Enter your email">
-                <label>Passeword</label>
-                <input type="password" placeholder="Enter your password">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter your password" required>
 
                 <button type="submit">Login</button>
             </form>

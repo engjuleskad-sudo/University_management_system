@@ -5,19 +5,32 @@ class Router
 {
     public function dispatch(): void 
     {
-        $url=$_GET['url'] ?? 'login';
+       
 
-        switch($url){
+        $page=$_GET['page'] ??'login';
+
+        switch($page){
             case 'login':
-                $controller = new AuthController();
-                $controller->login();
+
+                $controller=new AuthController();
+               if($_SERVER['REQUEST_METHOD']=== 'POST')
+                {
+                    $controller->login();
+                }
+                else{
+                    $controller->showLogin();
+                }
+
                 break;
 
-
-                default:
-                echo "<h2>404 Page Not Found</h2>";
+            case 'dashboard':
+                require_once __DIR__ . '/../Views/dashboard.php';
+                
+                break;
         }
+        
     }
-}
+ }
+
 
 ?>
