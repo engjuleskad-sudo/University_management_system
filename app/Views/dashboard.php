@@ -4,14 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+      <link rel="stylesheet" href="assets/css/style.css">       
 </head>
 <body>
-    <h1>University Management System</h1>
+    <div class="dashboard">
+        <div class="sidebar">
+            <h2>UMS</h2>
+            <ul>
+                <li>🏠 Dashboard</li>
+                <li>🏫 Universities</li>
+                <li>👨‍🎓 Students</li>
+                <li>👨‍🏫 Lecturers</li>
+                <li>📚 Library</li>
+                <li>💰 Finance</li>
+                <li>⚙ Settings</li>
+                <li><a href="?page=logout">🚪 Logout</a></li>
+            </ul>
 
-    <h2>Welcome,
-        <?php echo $_SESSION['first_name']; ?>! 
-    </h2>
+        </div>
+        <div class="content">
+             <h2>Welcome,
+            <?php echo $_SESSION['first_name']; ?>! 
+             </h2>
 
-    <p>You have successfully loged in.</p>
+             <p>You have successfully loged in.</p>
+             <hr>
+
+             <h2>Dashboard Overview</h2>
+             <div class="cards">
+                <div class="card">
+                    <h3>Universities</h3>
+                    <p>1</p>
+
+                </div>
+                 <div class="card">
+                    <h3>Students</h3>
+                    <p>0</p>
+
+                </div>
+                 <div class="card">
+                    <h3>Lecturers</h3>
+                    <p>0</p>
+
+                </div>
+                 <div class="card">
+                    <h3>Courses</h3>
+                    <p>0</p>
+
+                </div>
+
+             </div>
+
+        </div>
+
+    </div>
+    
+
+   
+    
 </body>
 </html>

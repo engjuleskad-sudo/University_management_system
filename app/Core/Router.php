@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../Controllers/AuthController.php';
+require_once __DIR__ . '/../Controllers/UniversityController.php';
 
 class Router 
 {
@@ -27,6 +28,27 @@ class Router
                 require_once __DIR__ . '/../Views/dashboard.php';
                 
                 break;
+            case 'universities':
+                $controller=new UniversityController();
+                $controller->index();
+
+                break;
+            case 'add-university':
+                $controller=new UniversityController();
+
+                if($_SERVER['REQUEST_METHOD']=='POST')
+                    {
+                        $controller->store();
+                    }
+                    else{
+                        $controller->create();
+
+                    }
+                    break;
+             default:
+                 echo "<h2>404 Page Not Foung</2>";
+                     break;
+
         }
         
     }
