@@ -7,6 +7,11 @@
 </head>
 <body>
     <h1>Universities</h1>
+    <p>
+        <a href="?page=add-university">
+            <button>Add New University</button>
+        </a>
+    </p>
 
     <table border="1" cellapadding="10">
         <tr>
@@ -15,6 +20,7 @@
             <th>Short Name</th>
             <th>Email</th>
             <th>City</th>
+            <th>Actions</th>
 
 
         </tr>
@@ -26,7 +32,21 @@
                 <td><?= $university['short_name']; ?></td>
                 <td><?= $university['email']; ?></td>
                 <td><?= $university['city']; ?></td>
+             <td>
+
+                <a href="?page=edit-university&id=<?= $university['id']; ?>">
+                    Edit
+                </a>
+                <a href="?page=delete-uiversity&id=<? $university['is']; ?>" 
+                onclick="return confirm('Are you sure you want to delete this university?');">
+                Delete 
+            
+             </a>
+                
+            
+              </td>
             </tr>
+           
         <?php endforeach; ?>
     </table>
 </body>
