@@ -5,7 +5,7 @@
  {
     public function index()
     // {
-    //     echo "<h1>University Found</h1>";
+    //      die("University Controller Works!");
     // }
     {
 
@@ -29,6 +29,26 @@
 
         header("Location: ?page=universities");
         
+        exit;
+    }
+
+    public function edit()
+    {
+        $model= new University();
+
+        $university= $model->find($_GET['id']);
+
+        require_once __DIR__ . '/../Views/universities/edit.php';
+    }
+
+    public function update()
+    {
+        $model= new University();
+
+        $model->update($_GET['id'], $_POST);
+
+        header("Location: ?page=universities");
+
         exit;
     }
  }

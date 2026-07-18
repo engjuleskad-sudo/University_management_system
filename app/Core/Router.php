@@ -25,10 +25,19 @@ class Router
                 break;
 
             case 'dashboard':
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+
+                    exit;
+                }
                 require_once __DIR__ . '/../Views/dashboard.php';
                 
                 break;
             case 'universities':
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+                    exit;
+                }
                 $controller=new UniversityController();
                 $controller->index();
 
@@ -45,14 +54,34 @@ class Router
 
                     }
                     break;
-             default:
-                 echo "<h2>404 Page Not Foung</2>";
+             
+            case 'edit-university':
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+                    exit;
+                }
+                $controller=new UniversityController();
+                if($_SERVER['REQUEST_METHOD']==='POST'){
+                    $controller->update();
+                    
+                }
+                else{
+                    $controller->edit();
+
+                }
+                break;
+            case 'update-university':
+                $controller=new UniversityController();
+                $controller->update();
+
+                break;
+            default:
+                 echo "<h2>404 Page Not Found!</h2>";
                      break;
 
         }
         
     }
  }
-
 
 ?>

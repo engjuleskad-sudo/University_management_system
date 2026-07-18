@@ -25,6 +25,18 @@ class University
 
         return $stmt->fetchAll();
     }
+    
+
+    public function find($id)
+    {
+        $stmt=$this->db->prepare(
+            "SELECT * FROM universities WHERE id= :id"
+        );
+        $stmt->execute([
+            'id' =>$id 
+        ]);
+        return $stmt->fetch();
+    }
     public function create($data)
     {
         $sql="INSERT INTO universities 
@@ -63,6 +75,37 @@ class University
             'province'=>$data['province'],
             'city'=>$data['city'],
             'address'=>$data['address']
+        ]);
+    }
+
+    public function update($id,$data)
+    {
+        $sql= "UPDATE universities SET
+        name= :name,
+        short_name= :short_name,
+        email= :email,
+        phone= :phone,
+        website= :website,
+        country= :country,
+        province= :province,
+        city= :city,
+        address= :address
+
+        WHERE id= :id";
+
+        $stmt= $this->db->prepare($sql);
+
+        return $stmt->execute([
+            'id' =>$id,
+            'name' =>$data['name'],
+            'short_name' =>$data['short_name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'website' => $data['website'],
+            'country' => $data['country'],
+            'province' => $data['province'],
+            'city' => $data['city'],
+            'address' => $data['address']
         ]);
     }
 

@@ -1,121 +1,219 @@
+/* =====================================
+   GLOBAL STYLES
+===================================== */
+
 *{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
 }
+
 body{
-    background: #f4f6f9;
+    background:#f4f6f9;
+    color:#333;
 }
-.login-container{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
+a{
+    text-decoration:none;
 }
-.login-box{
-    width: 420px;
-    background: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,.15) ;
-}
-.login-box h1{
-    text-align: center;
-    margin-bottom: 10px;
-    color: #1d3557;
-}
-.login-box h2{
-    text-align: center;
-    margin-bottom: 30px;
-    color: #5e5b5b;
-}
-label{
-    display: block;
-    margin-top: 15px;
-    margin-bottom: 5px;
-}
-input{
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin-bottom: 15px;
-}
+
+/* =====================================
+   BUTTONS
+===================================== */
+
 button{
-    width: 100%;
-    padding: 12px;
-    background: #1d3557;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
+    padding:12px 20px;
+    background:#1d3557;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:15px;
 }
-button:hover{
-    background: #16324d;
-}
-.dashboard{
-    display: flex;
-    min-height: 100vh;
-}
-.sidebar{
-    width: 250px;
-    background: #1d3557;
-    color: white;
-    padding: 20px;
-}
-.sidebar h2{
-    text-align: center;
-    margin-bottom: 30px;
-}
-.sidebar ul{
-    list-style: none;
-}
-.sidebar ul li{
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.sidebar ul li:hover{
-    background: #457b9d;
-}
-.sidebar ul li a{
-    color: white;
-    text-decoration: none;
-}
-.content{
-    display: flex;
-    gap: 20px;
-    margin-top: 30px;
-    flex-wrap: wrap;
-}
-.content h1{
-    color: #1d3557;
-}
-.cards{
-    display: flex;
-    gap: 20px;
-    margin-top: 30px;
-    flex-wrap: wrap;
-}
-.card{
-    background: white;
-    width: 220px;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0,0, .1);
-    text-align: center;
-}
-.card h3{
-    color: #555;
-    margin-bottom: 10px;
 
+button:hover{
+    background:#16324d;
 }
+
+/* =====================================
+   LOGIN PAGE
+===================================== */
+
+.login-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.login-box{
+    width:420px;
+    background:#fff;
+    padding:40px;
+    border-radius:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.login-box h1{
+    text-align:center;
+    color:#1d3557;
+    margin-bottom:10px;
+}
+
+.login-box h2{
+    text-align:center;
+    color:#666;
+    margin-bottom:30px;
+}
+
+label{
+    display:block;
+    margin:15px 0 5px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    margin-bottom:15px;
+}
+
+/* =====================================
+   APPLICATION LAYOUT
+===================================== */
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar{
+    width:250px;
+    background:#1d3557;
+    color:white;
+    padding:20px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    margin:10px 0;
+}
+
+.sidebar ul li a{
+    display:block;
+    color:white;
+    padding:12px;
+    border-radius:6px;
+    transition:.3s;
+}
+
+.sidebar ul li a:hover{
+    background:#457b9d;
+}
+
+.content{
+    flex:1;
+    padding:30px;
+    background:#f5f7fa;
+}
+
+/* =====================================
+   DASHBOARD CARDS
+===================================== */
+
+.cards{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.card{
+    width:220px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.10);
+}
+
+.card h3{
+    color:#666;
+    margin-bottom:15px;
+}
+
 .card p{
-    font-size: 32px;
-    color: #1d3557;
-    font-weight: bold;
+    font-size:34px;
+    color:#1d3557;
+    font-weight:bold;
+}
+
+/* =====================================
+   TABLES
+===================================== */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+table th{
+    background:#1d3557;
+    color:white;
+    padding:15px;
+    text-align:left;
+}
+
+table td{
+    padding:12px 15px;
+    border-bottom:1px solid #ddd;
+}
+
+table tr:nth-child(even){
+    background:#f8f8f8;
+}
+
+table tr:hover{
+    background:#eef5ff;
+}
+
+/* =====================================
+   ACTION BUTTONS
+===================================== */
+
+.btn{
+    display:inline-block;
+    padding:8px 14px;
+    border-radius:5px;
+    color:white;
+    font-size:14px;
+}
+
+.btn-primary{
+    background:#1d3557;
+}
+
+.btn-success{
+    background:#28a745;
+}
+
+.btn-danger{
+    background:#dc3545;
+}
+
+.btn:hover{
+    opacity:.9;
 }

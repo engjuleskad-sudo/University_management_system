@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Universities</title>
-</head>
-<body>
+<?php
+require_once __DIR__ . '/../layouts/header.php';
+?>
+<?php require_once __DIR__ . '/../layouts/sidebar.php'; ?>
+
     <h1>Universities</h1>
     <p>
-        <a href="?page=add-university">
-            <button>Add New University</button>
+        <a href="?page=add-university" class="btn btn-primary">
+            ➕ Add New University
         </a>
     </p>
 
@@ -34,12 +31,12 @@
                 <td><?= $university['city']; ?></td>
              <td>
 
-                <a href="?page=edit-university&id=<?= $university['id']; ?>">
-                    Edit
+                <a class="btn btn-success" href="?page=edit-university&id=<?= $university['id']; ?>">
+                   ✏ Edit 
                 </a>
-                <a href="?page=delete-uiversity&id=<? $university['is']; ?>" 
+                <a class="btn btn-danger" href="?page=delete-university&id=<? $university['id']; ?>" 
                 onclick="return confirm('Are you sure you want to delete this university?');">
-                Delete 
+                🗑 Delete 
             
              </a>
                 
@@ -49,5 +46,5 @@
            
         <?php endforeach; ?>
     </table>
-</body>
-</html>
+
+<?php require_once __DIR__ .'/../layouts/footer.php'; ?>
