@@ -10,8 +10,12 @@
     {
 
         $model=new University();
-
-        $universities= $model->all();
+        if(isset($_GET['search']) && !empty(trim($_GET['search']))){
+            $universities = $model->search(trim($_GET['search']));
+        }
+        else{
+            $universities=$model->all();
+        }
 
         require_once __DIR__ . '/../Views/universities/index.php';
     }

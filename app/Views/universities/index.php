@@ -80,4 +80,27 @@ require_once __DIR__ . '/../layouts/header.php';
         <?php endforeach; ?>
     </table>
 
+    <form method="GET" class="mb-3">
+        <input type="hidden" name="page" value="universities">
+        <input 
+        type="text"
+        name="search"
+        class="form-control"
+        placeholder="Search by name,short name or by city..."
+        value=<?= htmlspecialchars($_GET['search'] ?? '') ?>
+        >
+
+        <button type="submit" class="btn btn-primary">
+            🔍 Search
+
+        </button>
+        <a href="?page=universities" class="btn btn-secondary">
+            Reset
+        </a>
+
+</form>
+<p>
+    <?= count($universities); ?> university(ies) found.
+</p>
+
 <?php require_once __DIR__ .'/../layouts/footer.php'; ?>

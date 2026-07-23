@@ -130,6 +130,20 @@ class University
             'id' =>$id
         ]);
     }
+    public function search($keyword)
+    {
+        $stmt=$this->db->prepare(
+            "SELECT * FROM universities
+            WHERE name LIKE :keyword
+            OR short_name LIKE :keyword
+            ORDER BY id DESC"
+        );
+        $stmt->execute([
+            'keyword' => '%' . $keyword . '%'
+
+        ]);
+        return $stmt->fetchAll();
+    }
 
    
 }
