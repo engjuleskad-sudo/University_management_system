@@ -108,6 +108,28 @@ class University
             'address' => $data['address']
         ]);
     }
+    public function deactivate($id)
+    {
+        $stmt=$this->db->prepare(
+            "UPDATE universities SET status='Inactive' WHERE id= :id"
+        );
+
+        return $stmt ->execute([
+            'id' => $id
+        ]);
+    }
+   
+    public function activate($id)
+    {
+        $stmt=$this->db->prepare(
+            "UPDATE universities 
+            SET status ='Active'
+            WHERE id= :id"
+        );
+        return $stmt->execute([
+            'id' =>$id
+        ]);
+    }
 
    
 }

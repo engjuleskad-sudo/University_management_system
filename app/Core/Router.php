@@ -75,6 +75,25 @@ class Router
                 $controller->update();
 
                 break;
+            case 'deactivate-university':
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+                    exit;
+                }
+
+                $controller=new UniversityController();
+                $controller->deactivate();
+                exit;
+            case 'activate-university':
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+                    exit;
+                }
+                $controller=new UniversityController();
+                $controller->activate();
+                
+                exit;
+
             default:
                  echo "<h2>404 Page Not Found!</h2>";
                      break;

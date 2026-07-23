@@ -26,6 +26,7 @@
         $model=new University();
 
         $model->create($_POST);
+        $_SESSION['success']="University Created Successfully.";
 
         header("Location: ?page=universities");
         
@@ -46,10 +47,40 @@
         $model= new University();
 
         $model->update($_GET['id'], $_POST);
+        $_SESSION['success']="University updated successfully.";
 
         header("Location: ?page=universities");
 
         exit;
+    }
+
+    public function deactivate()
+    {
+        if(!isset($_GET['id'])){
+            die("University ID not found");
+        }
+        $model=new University();
+
+        $model->deactivate($_GET['id']);
+        $_SESSION['success']="University deactivated successfully.";
+
+        header("Location: ?page=universities");
+        exit;
+
+        
+    }
+    public function activate()
+    {
+        if(!isset($_GET['id'])){
+            die("University not found.");
+        }
+        $model=new University();
+
+        $model->activate($_GET['id']);
+
+        $_SESSION['success']="University activated successfully.";
+
+        header("Location: ?page=universities");
     }
  }
 ?>
