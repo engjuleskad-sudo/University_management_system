@@ -1,24 +1,22 @@
 <?php
  require_once __DIR__ . '/../Models/University.php';
 
- class UniversityController
+ class UniversityController 
  {
-    public function index()
+    // public function index
+   
     // {
-    //      die("University Controller Works!");
+
+    //     $model=new University();
+    //     if(isset($_GET['search']) && !empty(trim($_GET['search']))){
+    //         $universities = $model->search(trim($_GET['search']));
+    //     }
+    //     else{
+    //         $universities=$model->all();
+    //     }
+
+    //     require_once __DIR__ . '/../Views/universities/index.php';
     // }
-    {
-
-        $model=new University();
-        if(isset($_GET['search']) && !empty(trim($_GET['search']))){
-            $universities = $model->search(trim($_GET['search']));
-        }
-        else{
-            $universities=$model->all();
-        }
-
-        require_once __DIR__ . '/../Views/universities/index.php';
-    }
     public function create()
     {
         require_once __DIR__ . '/../Views/universities/create.php';
@@ -85,6 +83,24 @@
         $_SESSION['success']="University activated successfully.";
 
         header("Location: ?page=universities");
+    }
+    public function index()
+    {
+        $model=new University();
+
+        //search
+        if(isset($_GET['search']) && !empty(trim($_GET['search']))){
+            $universities=$model->search(trim($_GET['search']));
+        }
+        //filter
+        elseif(isset($_GET['status']) && $_GET['status'] != ''){
+            $universities=$model->filterByStatus($_GET['status']);
+        }
+        //Show all
+        else{
+            $universities=$model->all();
+        }
+        require_once __DIR__ . '/../Views/universities/index.php';
     }
  }
 ?>

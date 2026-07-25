@@ -16,16 +16,62 @@ require_once __DIR__ . '/../layouts/header.php';
 
         <?php endif; ?>
         
-        </div>
 
-    <h1>Universities</h1>
+    
     <p>
-        <a href="?page=add-university" class="btn btn-primary">
+       
+    </p>
+    <div class="page-header">
+        <h1> 🏫Universities</h1>
+
+         <a href="?page=add-university" class="btn btn-primary">
             ➕ Add New University
         </a>
-    </p>
 
-    <table border="1" cellapadding="10">
+    </div>
+      <form method="GET" class="search-box">
+        <input type="hidden" name="page" value="universities">
+        <input 
+        type="text"
+        name="search"
+        class="form-control"
+        placeholder="Search by name,short name or by city..."
+        value="<?= htmlspecialchars($_GET['search'] ?? '') ?>"
+        >
+
+
+      
+        <select name="status">
+            <option value="">All Status</option>
+
+            <option value="Active"
+                <?= (($_GET['status'] ?? '')== 'Active') ? 'selected' : '' ?>>
+                Active
+            </option>
+
+            <option value="Inactive"
+            <?= (($_GET['status'] ?? '') == 'Inactive') ? 'selected' : '' ?>
+            >
+            Inactive
+        </option>
+        </select>
+
+          <button type="submit" class="btn btn-primary">
+            🔍 Search
+
+        </button>
+        <a href="?page=universities" class="btn btn-secondary">
+            Reset
+        </a>
+
+
+</form>
+<p class="result-count">
+    <?= count($universities); ?> university(ies) found.
+</p>
+
+
+    <table border="1" cellpadding="10">
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -38,7 +84,7 @@ require_once __DIR__ . '/../layouts/header.php';
 
 
         </tr>
-
+        <?php if(count($universities)>0): ?>
         <?php foreach($universities as $university): ?>
             <tr>
                 <td><?= $university['id']; ?></td>
@@ -46,14 +92,15 @@ require_once __DIR__ . '/../layouts/header.php';
                 <td><?= $university['short_name']; ?></td>
                 <td><?= $university['email']; ?></td>
                 <td><?= $university['city']; ?></td>
-                <td>
+                <td class="text-center">
                     <?php if($university['status']=='Active'): ?>
-                        <span class="badge bg-success">Active</span>
+                        <span class="status active">Active</span>
                     <?php else: ?>
-                        <span class="badge bg-danger">Inactive</span>
+                        <span class="status inactive">Inactive</span>
                     <?php endif; ?>
                 </td>
-             <td>
+            <td>
+                <div class="actions">
 
                 <a class="btn btn-success" href="?page=edit-university&id=<?= $university['id']; ?>">
                    ✏ Edit 
@@ -65,42 +112,32 @@ require_once __DIR__ . '/../layouts/header.php';
                 🚫 Deactivate  
             
              </a>
+           
+             
              <?php else: ?>
                 <a class="btn btn-primary"
                 href="?page=activate-university&id=<?= $university['id']; ?>">
             ✅ Activate
-            </a>
+             </a>
+               
             <?php endif; ?>
-             
-                
+
+            </div>
+             </td>
+
+          </tr> 
+            <?php endforeach; ?>
             
-              </td>
-            </tr>
-           
-        <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="7" style="text-align:center;">
+                        No universities found.
+
+                    </td>
+                </tr>
+            <?php endif; ?>
+       
     </table>
 
-    <form method="GET" class="mb-3">
-        <input type="hidden" name="page" value="universities">
-        <input 
-        type="text"
-        name="search"
-        class="form-control"
-        placeholder="Search by name,short name or by city..."
-        value=<?= htmlspecialchars($_GET['search'] ?? '') ?>
-        >
-
-        <button type="submit" class="btn btn-primary">
-            🔍 Search
-
-        </button>
-        <a href="?page=universities" class="btn btn-secondary">
-            Reset
-        </a>
-
-</form>
-<p>
-    <?= count($universities); ?> university(ies) found.
-</p>
-
+  
 <?php require_once __DIR__ .'/../layouts/footer.php'; ?>

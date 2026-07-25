@@ -7,7 +7,7 @@
     </li>
 
     <li>
-        <a href="?page=universities">🏫 Universities</a>
+        <a href="?page=universities" class="active">🏫 Universities</a>
     </li>
 
     <li>

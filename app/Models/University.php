@@ -144,6 +144,19 @@ class University
         ]);
         return $stmt->fetchAll();
     }
+    public function filterByStatus($status)
+    {
+        $stmt=$this->db->prepare(
+            "SELECT * FROM universities
+            WHERE status= :status
+            ORDER BY id DESC"
+        );
+        $stmt->execute([
+            'status' => $status
+        ]);
+
+        return $stmt->fetchAll();
+    }
 
    
 }

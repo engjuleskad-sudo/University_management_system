@@ -94,6 +94,10 @@ input{
     background:#1d3557;
     color:white;
     padding:20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
 }
 
 .sidebar h2{
@@ -122,9 +126,11 @@ input{
 }
 
 .content{
+    margin-left: 250px;
     flex:1;
     padding:30px;
     background:#f5f7fa;
+    overflow-x: auto;
 }
 
 /* =====================================
@@ -168,6 +174,9 @@ table{
     margin-top:20px;
     background:white;
     box-shadow:0 3px 10px rgba(0,0,0,.08);
+    border-radius: 10px;
+    overflow: hidden;
+
 }
 
 table th{
@@ -175,6 +184,7 @@ table th{
     color:white;
     padding:15px;
     text-align:left;
+    letter-spacing: .5px;
 }
 
 table td{
@@ -189,6 +199,12 @@ table tr:nth-child(even){
 table tr:hover{
     background:#eef5ff;
 }
+table tbody tr{
+    transition: .3s;
+}
+table tbody tr:hover{
+    transform: scale(1.01);
+}
 
 /* =====================================
    ACTION BUTTONS
@@ -197,9 +213,10 @@ table tr:hover{
 .btn{
     display:inline-block;
     padding:8px 14px;
-    border-radius:5px;
-    color:white;
-    font-size:14px;
+    border-radius:6px;
+    font-weight: 600;
+    transition: 0.3s ease;
+    cursor: pointer;
 }
 
 .btn-primary{
@@ -215,5 +232,100 @@ table tr:hover{
 }
 
 .btn:hover{
-    opacity:.9;
+    transform: translate(-2px);
+}
+/*===============
+ SEARCH BAR 
+ ================*/
+
+
+.search-box{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.08);
+
+     margin-bottom: 20px;
+
+}
+.search-box input{
+    width: 300px;
+    margin: 0;
+}
+.search-box select{
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.btn-secondary{
+    background: #6c757d;
+    color: white;
+}
+.btn-secondary:hover{
+    background: #5a6268;
+}
+/*=========================
+     PAGE HEADER 
+=========================*/
+
+.page-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.page-header h1{
+    color: #1d3557;
+}
+
+.result-count{
+    margin-bottom: 15px;
+    color: #555;
+    font-weight: bold;
+}
+/*=========================
+     STATUS
+===========================*/
+
+.status{
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+.active{
+    background: #28a745;
+}
+.inactive{
+    background: #dc3545;
+}
+
+.btn{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+.btn:visited{
+    color: white;
+}
+.btn:hover{
+    color: white;
+}
+.text-center{
+    text-align: center;
+}
+
+.actions{
+    display: flex;
+    gap: 8px;
+}
+.sidebar ul li a.active{
+    background: #457b9d;
+    font-weight: bold;
 }
