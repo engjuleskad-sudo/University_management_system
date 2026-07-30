@@ -17,11 +17,18 @@ class University
 
 
     }
-    public function all()
+    public function all($limit, $offset)
     {
-        $stmt=$this->db->query("SELECT * FROM universities ORDER BY id DESC");
+        $stmt=$this->db->prepare(
+            "SELECT * FROM universities 
+            ORDER BY id DESC
+            LIMIT :limit OFFSET :offset"
+            );
 
-      
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset',$offset, PDO::PARAM_INT);
+
+            $stmt->execute();
 
         return $stmt->fetchAll();
     }
@@ -44,6 +51,7 @@ class University
         name,
         short_name,
         email,
+        logo,
         phone,
         website,
         country,
@@ -55,6 +63,7 @@ class University
         :name,
         :short_name,
         :email,
+        :logo,
         :phone,
         :website,
         :country,
@@ -69,6 +78,7 @@ class University
             'name'=>$data['name'],
             'short_name'=>$data['short_name'],
             'email'=>$data['email'],
+            'logo' =>$data['logo'],
             'phone'=>$data['phone'],
             'website'=>$data['website'],
             'country'=>$data['country'],
@@ -100,6 +110,7 @@ class University
             'name' =>$data['name'],
             'short_name' =>$data['short_name'],
             'email' => $data['email'],
+            'logo' => $data['data'],
             'phone' => $data['phone'],
             'website' => $data['website'],
             'country' => $data['country'],
@@ -156,6 +167,14 @@ class University
         ]);
 
         return $stmt->fetchAll();
+    }
+    public function count()
+    {
+        $stmt=$this->db->query(
+            "SELECT COUNT(*) FROM universities"
+        );
+
+        return $stmt->fetchColumn();
     }
 
    

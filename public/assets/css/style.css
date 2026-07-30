@@ -329,3 +329,26 @@ table tbody tr:hover{
     background: #457b9d;
     font-weight: bold;
 }
+/*==========================
+    PAGINATION
+============================*/
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+
+}
+.pagination a{
+    padding: 10px 15px;
+    background: #1d3557;
+    color: #fff;
+    border-radius: 6px;
+}
+.pagination a:hover{
+    background: #457b9d;
+}
+.active-page{
+    background: #28a745 !important;
+}

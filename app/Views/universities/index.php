@@ -76,6 +76,7 @@ require_once __DIR__ . '/../layouts/header.php';
             <th>ID</th>
             <th>Name</th>
             <th>Short Name</th>
+            <th>Logo</th>
             <th>Email</th>
             <th>City</th>
             <th>Status</th>
@@ -90,6 +91,16 @@ require_once __DIR__ . '/../layouts/header.php';
                 <td><?= $university['id']; ?></td>
                 <td><?= $university['name']; ?></td>
                 <td><?= $university['short_name']; ?></td>
+                <td><?php if(!empty($university['logo'])): ?>
+                    <img src="assets/uploads/logos/<?= htmlspecialchars($university['logo']); ?>" 
+                    alt="University Logo"
+                    width="60"
+                    height="60"
+                    style="object-fit:cover; border-radius:6px;">
+                    <?php else: ?>
+                        No Logo
+                        <?php endif; ?>
+                </td>
                 <td><?= $university['email']; ?></td>
                 <td><?= $university['city']; ?></td>
                 <td class="text-center">
@@ -138,6 +149,22 @@ require_once __DIR__ . '/../layouts/header.php';
             <?php endif; ?>
        
     </table>
+<div class="pagination">
+    <?php if($page>1): ?>
+        <a href="?page=universities&p=<?= $page -1; ?>">Previous</a>
+    <?php endif; ?>
 
+   <?php for($i=1; $i <=$totalPages; $i++): ?>
+
+    <a href="?page=universities&p=<?= $i ?>"
+    class="<?=($i==$page) ? 'active-page' : '' ?>">
+    <?= $i ?>
+    </a>
+    <?php endfor; ?>
+
+    <?php if($page<$totalPages): ?>
+        <a href="?page=-universities&p=<?= $page + 1 ?>">Next</a>
+        <?php endif; ?>
+</div>
   
 <?php require_once __DIR__ .'/../layouts/footer.php'; ?>

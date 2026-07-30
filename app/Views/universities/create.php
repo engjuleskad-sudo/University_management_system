@@ -7,7 +7,9 @@
 </head>
 <body>
     <h1>Add new University</h1>
-    <form method="POST" action="?page=add-university">
+    <form method="POST" 
+    action="?page=add-university"
+    enctype="multipart/form-data">
         <label>University Name</label><br>
         <input type="text" name="name" required><br><br>
 
@@ -16,6 +18,11 @@
 
          <label>Email</label><br>
         <input type="email" name="email"><br><br>
+         <label>University Logo</label><br>
+            <input type="file"
+            name="logo"
+            accept="image/*"><br><br>
+        
 
          <label>Phone</label><br>
         <input type="text" name="phone"><br><br>
@@ -38,6 +45,9 @@
         <button type="submit">
             Save University
         </button>
+
+        
+       
 
         
 
