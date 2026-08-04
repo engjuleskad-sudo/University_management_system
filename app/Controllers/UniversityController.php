@@ -68,6 +68,17 @@
 
         require_once __DIR__ . '/../Views/universities/edit.php';
     }
+      public function show()
+    {
+        if(!isset($_GET['id'])){
+            die("University ID not found.");
+        }
+        $model=new University();
+
+        $university=$model->find($_GET['id']);
+
+        require_once __DIR__  . '/../Views/universities/show.php';
+    }
 
     public function update()
     {
@@ -138,5 +149,6 @@
 
         require_once __DIR__ . '/../Views/universities/index.php';
     }
+  
  }
 ?>

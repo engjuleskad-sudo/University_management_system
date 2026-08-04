@@ -11,7 +11,7 @@
     </li>
 
     <li>
-        <a href="#">👨 Students</a>
+        <a href="?page=students">👨 Students</a>
     </li>
 
     <li>

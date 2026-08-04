@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../Controllers/AuthController.php';
 require_once __DIR__ . '/../Controllers/UniversityController.php';
+require_once __DIR__ . '/../Controllers/StudentController.php';
 
 class Router 
 {
@@ -54,6 +55,16 @@ class Router
 
                     }
                     break;
+            case 'view-university':
+
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+                    exit;
+                }
+                $controller=new UniversityController();
+                $controller->show();
+
+                break;
              
             case 'edit-university':
                 if(!isset($_SESSION['user_id'])){
@@ -97,6 +108,15 @@ class Router
             default:
                  echo "<h2>404 Page Not Found!</h2>";
                      break;
+            case 'students':
+                if(!isset($_SESSION['user_id'])){
+                    hesder("Location: ?page=login");
+                    exit;
+                }
+
+                $controller= new StudentController();
+                $controller->index();
+                break;
 
         }
         

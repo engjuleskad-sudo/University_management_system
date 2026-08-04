@@ -112,6 +112,10 @@ require_once __DIR__ . '/../layouts/header.php';
                 </td>
             <td>
                 <div class="actions">
+                    <a class="btn btn-info" href="?page=view-university&id=<?= $university['id']; ?>">
+                        👁 View 
+                        
+                    </a>
 
                 <a class="btn btn-success" href="?page=edit-university&id=<?= $university['id']; ?>">
                    ✏ Edit 
