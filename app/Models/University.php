@@ -176,8 +176,18 @@ class University
 
         return $stmt->fetchColumn();
     }
+    public function getAll()
+    {
+        $sql="SELECT * FROM universities ORDER BY name ASC";
+
+        $stmt= $this->db->query($sql);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    }
 
    
-}
+
 
 ?>

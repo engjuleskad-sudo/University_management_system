@@ -104,10 +104,6 @@ class Router
                 $controller->activate();
                 
                 exit;
-
-            default:
-                 echo "<h2>404 Page Not Found!</h2>";
-                     break;
             case 'students':
                 if(!isset($_SESSION['user_id'])){
                     hesder("Location: ?page=login");
@@ -117,6 +113,31 @@ class Router
                 $controller= new StudentController();
                 $controller->index();
                 break;
+            case 'add-student':
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+                    exit;
+
+
+                }
+                $controller=new StudentController();
+                $controller->create();
+                break;
+            case 'store-student':
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+                    exit;
+                }
+                $controller=new StudentController();
+                $controller->store();
+                break;
+            
+
+
+            default:
+                 echo "<h2>404 Page Not Found!</h2>";
+                     break;
+            
 
         }
         

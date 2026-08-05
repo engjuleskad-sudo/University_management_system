@@ -24,6 +24,7 @@
         <?php foreach($students as $student): ?>
 
             <tr>
+                 <td><?= $student['id']; ?></td>
                 <td>
                     <?php if(!empty($student['photo'])): ?>
 
@@ -35,6 +36,7 @@
                     No photo
                     <?php endif; ?>
                 </td>
+                <td> <?= htmlspecialchars($student['registration_number']); ?></td>
                 <td>
                     <?= htmlspecialchars($student['first_name']); ?>
                     <?= htmlspecialchars($student['last_name']); ?>
@@ -42,6 +44,7 @@
                 </td>
                 <td><?= htmlspecialchars($student['university_name']); ?></td>
                 <td><?= htmlspecialchars($student['gender']); ?></td>
+                
 
                 <td>
                     <?php if($student['status']=="Active"): ?>
