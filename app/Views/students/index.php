@@ -26,15 +26,16 @@
             <tr>
                  <td><?= $student['id']; ?></td>
                 <td>
-                    <?php if(!empty($student['photo'])): ?>
-
-                        <img src="assets/uploads/students/<?= htmlspecialchars($student['photo']); ?>"
-                        width="50"
-                        height="50"
+                    <?php 
+                    $photo=!empty($student['photo'])
+                    ?"assets/uploads/students/". htmlspecialchars($student['photo'])
+                    :"assets/images/default.png";
+                     ?>
+                     
+                          <img src="<?= $photo; ?>"
+                        width="60"
+                        height="60"
                         style="border-radius:50%; object-fit:cover;">
-                    <?php else: ?>
-                    No photo
-                    <?php endif; ?>
                 </td>
                 <td> <?= htmlspecialchars($student['registration_number']); ?></td>
                 <td>
@@ -54,7 +55,8 @@
                         <?php endif; ?>   
                 </td>
                 <td>
-                    <a href="#" class="btn btn-info">👁 View</a>
+                    <a href="?page=show-student&id=<?=$student['id']; ?>" class="btn btn-info">
+                        👁 View</a>
                     <a href="#" class="btn btn-success">✏ Edit</a>
                 </td>
             </tr>

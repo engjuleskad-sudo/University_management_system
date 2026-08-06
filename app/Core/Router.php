@@ -131,6 +131,14 @@ class Router
                 $controller=new StudentController();
                 $controller->store();
                 break;
+            case 'show-student':
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+                    exit;
+                }
+                $controller= new StudentController();
+                $controller->show();
+                break;
             
 
 
