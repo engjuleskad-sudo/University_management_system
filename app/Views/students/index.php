@@ -57,7 +57,8 @@
                 <td>
                     <a href="?page=show-student&id=<?=$student['id']; ?>" class="btn btn-info">
                         👁 View</a>
-                    <a href="#" class="btn btn-success">✏ Edit</a>
+                    <a href="?page=edit-student&id=<?= $student['id']; ?>" 
+                    class="btn btn-success">✏ Edit</a>
                 </td>
             </tr>
             

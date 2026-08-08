@@ -91,6 +91,43 @@ class Student
         ]);
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
-   
+         }
+    public function update($id, $data)
+    {
+        $sql= "UPDATE students SET 
+        university_id = :university_id,
+        registration_number= :registration_number,
+        first_name= :first_name,
+        last_name= :last_name,
+        gender= :gender,
+        date_of_birth= :date_of_birth,
+        email= :email,
+        phone= :phone,
+        photo= :photo,
+        country= :country,
+        province= :province,
+        city= :city,
+        address= :address
+
+        WHERE id= :id";
+
+        $stmt=$this->db->prepare($sql);
+
+        return $stmt->execute([
+            'university_id'=> $data['university_id'],
+            'registration_number'=> $data['registration_number'],
+            'first_name'=> $data['first_name'],
+            'last_name' =>$data['last_name'],
+            'gender' =>$data['gender'],
+            'date_of_birth' =>$data['date_of_birth'],
+            'email' =>$data['email'],
+            'phone' =>$data['phone'],
+            'photo' =>$data['photo'],
+            'country' =>$data['country'],
+            'province' =>$data['province'],
+            'city' =>$data['city'],
+            'address' =>$data['address'],
+            'id' =>$id 
+        ]);
 }
 }

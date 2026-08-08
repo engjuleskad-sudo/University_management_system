@@ -106,20 +106,20 @@ class Router
                 exit;
             case 'students':
                 if(!isset($_SESSION['user_id'])){
-                    hesder("Location: ?page=login");
+                    header("Location: ?page=login");
                     exit;
                 }
 
                 $controller= new StudentController();
                 $controller->index();
                 break;
+          
             case 'add-student':
                 if(!isset($_SESSION['user_id'])){
-                    header("Location: ?page=login");
+                    header("Location: ?page=logi");
                     exit;
-
-
                 }
+                   
                 $controller=new StudentController();
                 $controller->create();
                 break;
@@ -130,6 +130,20 @@ class Router
                 }
                 $controller=new StudentController();
                 $controller->store();
+                break;
+            case 'edit-student':
+                if(!isset($_SESSION['user_id'])){
+                     header("Location: ?page=login");
+                    exit;
+                }
+                $controller=new StudentController();
+                if($_SERVER['REQUEST_METHOD']==='POST'){
+                    $controller->update();
+                }else
+                {
+                    $controller->edit();
+                }
+                
                 break;
             case 'show-student':
                 if(!isset($_SESSION['user_id'])){
