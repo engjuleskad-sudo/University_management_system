@@ -10,6 +10,7 @@ class Router
        
 
         $page=$_GET['page'] ??'login';
+        
 
         switch($page){
             case 'login':
@@ -116,7 +117,7 @@ class Router
           
             case 'add-student':
                 if(!isset($_SESSION['user_id'])){
-                    header("Location: ?page=logi");
+                    header("Location: ?page=login");
                     exit;
                 }
                    
@@ -152,6 +153,22 @@ class Router
                 }
                 $controller= new StudentController();
                 $controller->show();
+                break;
+            case 'deactivate-student':
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+                    exit;
+                }
+                $controller=new StudentController();
+                $controller->deactivate();
+                break;
+            case 'activate-student':
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+                    exit;
+                }
+                $controller=new StudentController();
+                $controller->activate();
                 break;
             
 

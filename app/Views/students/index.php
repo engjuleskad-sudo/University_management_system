@@ -55,10 +55,27 @@
                         <?php endif; ?>   
                 </td>
                 <td>
-                    <a href="?page=show-student&id=<?=$student['id']; ?>" class="btn btn-info">
+                    <a href="?page=show-student&id=<?=$student['id']; ?>"
+                     class="btn btn-info">
                         👁 View</a>
                     <a href="?page=edit-student&id=<?= $student['id']; ?>" 
                     class="btn btn-success">✏ Edit</a>
+                    <?php if($student['status']=="Active"): ?>
+                        <a href="?page=deactivate-student&id=<?= $student['id']; ?>"
+                        class="btn btn-danger"
+                        onclick="return confirm('Are sure you want to deactivate this student?');">
+                        🔴 Deactivate 
+
+                        </a>
+                       <?php else: ?>
+
+                     <a href="?page=activate-student&id=<?= $student['id']; ?>"
+                      class="btn btn-success"
+                           onclick="return confirm('Are you sure you want to activate this student?');">
+                       🟢 Activate
+                     </a>
+
+                    <?php endif; ?>
                 </td>
             </tr>
             

@@ -109,6 +109,31 @@ class StudentController
         exit;
 
     }
-   
+   public function deactivate()
+   {
+    if(!isset($_GET['id'])){
+        die("Student ID not found.");
+    }
+    $model=new student();
+    $model->deactivate($_GET['id']);
+
+    $_SESSION['success']="Student deactivated successfully.";
+    header("Location: ?page=students");
+    exit;
+   }
+   public function activate()
+   {
+    if(!isset($_GET['id'])){
+        die("Student ID not found");
+    }
+    $model=new student();
+    
+    $model->activate($_GET['id']);
+
+    $_SESSION['success']="Student activated successfully.";
+    header("Location: ?page=students");
+    exit;
+   }
+
 
 }

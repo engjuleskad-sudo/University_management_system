@@ -130,4 +130,32 @@ class Student
             'id' =>$id 
         ]);
 }
+ 
+   public function deactivate($id)
+   {
+    $sql="UPDATE students
+     SET status='Inactive '
+     WHERE id= :id ";
+
+     $stmt=$this->db->prepare($sql);
+
+     return $stmt->execute([
+        'id' => $id
+     ]);
+
+   }
+   public function activate($id)
+   {
+    $sql="UPDATE students
+    SET status='Active'
+    WHERE id= :id";
+
+    $stmt=$this->db->prepare($sql);
+
+    return $stmt->execute([
+        'id' => $id
+    ]);
+   }
+
+
 }
