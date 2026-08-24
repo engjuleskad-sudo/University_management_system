@@ -22,6 +22,51 @@ class Student
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function search($search='', $university_id='', $status='')
+    {
+        $sql="SELECT students.*, universities.name AS university_name 
+        FROM students
+        JOIN universities
+        ON students.university_id=universities.id
+        WHERE 1=1";
+
+        $params=[];
+
+        //search by registration number, first name, last name or email
+
+        if(!empty($search)){
+            $sql .=" AND (
+            students.registration_number LIKE :search1
+            OR students.first_name LIKE :search2
+            OR students.last_name LIKE :search3
+            OR students.email LIKE :search4
+            )";
+
+            $searchValue="%" . $search . "%";
+            $params['search1']= $searchValue;
+            $params['search2']= $searchValue;
+            $params['search3']= $searchValue;
+            $params['search4']= $searchValue;
+
+
+        }
+        //Filter by university
+        if(!empty($university_id)){
+            $sql .=" AND students.university_id = :university_id";
+            $params['university_id']= $university_id;
+        }
+        //Filter by status 
+        if(!empty($status)){
+            $sql .=" AND students.status = :status";
+            $params['status']= $status;
+        }
+        $sql .= " ORDER BY students.id DESC";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($params);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     // Find one student
     public function find($id)
     {

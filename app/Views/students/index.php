@@ -8,6 +8,48 @@
         ➕ Add New Student
     </a>
 </p>
+<form method="GET" action="">
+    <input type="hidden" name="page" value="students">
+
+    <label >Search Student</label>
+    <input 
+    type="text"
+    name="search"
+    placeholder="Registration number, name or email"
+    value="<?= htmlspecialchars($_GET['search'] ?? ''); ?>">
+
+    <label for="">University</label>
+    <select name="university_id">
+        <option 
+        value="">---All Universities---</option>
+        <?php foreach($universities as $university): ?>
+            <option 
+            value="<?= $university['id']; ?>"
+            <?=($_GET['university_id'] ?? '')==$university['id'] ? 'selected' : 'id'; ?>>
+        <?= htmlspecialchars($university['name']); ?>
+        </option>
+        <?php endforeach; ?>
+
+    </select>
+    <label>Status</label>
+    <select name="status">
+        <option value="">---All Status---</option>
+        <option value="Active"
+        <?= ($_GET['status'] ?? '')== 'Active' ? 'selected' : ''; ?>>
+        Active    
+        </option>
+        <option value="Inactive"
+        <?= ($_GET['status'] ?? '')== 'Inactive' ? 'selected' : ''; ?>>
+    Inactive</option>
+    </select>
+    <button type="submit" class="btn btn-primary">
+        🔍 Search
+    </button>
+    <a href="?page=students" class="btn btn-secondary">
+        🔄 Reset
+    </a>
+</form>
+<br>
 <table cellpadding="10">
     <tr>
         <th>ID</th>

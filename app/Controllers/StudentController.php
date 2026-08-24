@@ -8,7 +8,20 @@ class StudentController
     {
         $model=new Student();
 
-        $students=$model->all();
+        $search= $_GET['search'] ?? '';
+        $university_id = $_GET['university_id'] ?? '';
+        $status= $_GET['status'] ?? '';
+
+
+
+        $students=$model->search(
+            $search,
+            $university_id,
+            $status
+        );
+
+        $universityModel = new university();
+        $universities = $universityModel->getAll();
 
         require_once __DIR__ . '/../Views/students/index.php';
     }
