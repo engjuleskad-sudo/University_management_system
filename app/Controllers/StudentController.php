@@ -8,19 +8,48 @@ class StudentController
     {
         $model=new Student();
 
+        //search and filters
         $search= $_GET['search'] ?? '';
         $university_id = $_GET['university_id'] ?? '';
         $status= $_GET['status'] ?? '';
 
 
+        //pagination 
+        $limit = 10;
 
-        $students=$model->search(
+        $page=isset($_GET['page_number'])
+        ? (int) $_GET['page_number']
+        : 1;
+        
+        if($page<1){
+            $page= 1;
+
+        }
+        $totalStudents= $model->countSearch(
             $search,
             $university_id,
             $status
-        );
 
-        $universityModel = new university();
+        );
+        $totalPages= ceil($totalStudents / $limit);
+        if($totalPages > 0 && $page > $totalPages){
+            $page = $totalPages;
+
+        }
+        $offset= ($page - 1) * $limit;
+
+        //Get student for current page
+        $students = $model->search(
+
+        $search,
+        $university_id,
+        $status,
+        $limit,
+        $offset
+        );
+        //Universities for filter down
+        $universityModel = new University();
+
         $universities = $universityModel->getAll();
 
         require_once __DIR__ . '/../Views/students/index.php';

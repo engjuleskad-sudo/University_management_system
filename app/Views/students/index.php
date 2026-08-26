@@ -135,4 +135,29 @@
                 <?php endif; ?>
 
 </table>
+<?php if($totalPages > 1): ?>
+    <div style="margin-top: 20px;">
+        <?php if($page > 1): ?>
+            <a href="?page=students&page_number=<?= $page -1; ?>&search=<?= urlencode($search); ?>&university_id=<?= urlencode($university_id); ?>$status=<?= urlencode($status); ?>"
+            class="btn btn-secondary">
+               ⬅ Previous
+        </a>
+        <?php endif; ?>
+
+        <?php for($i=1; $i<= $totalPages; $i++): ?>
+            <a href="?page=students&page_number=<?= $i; ?>&search=<?= urlencode($search); ?>&university_id=<?= urlencode($university_id); ?>&status=<?= urlencode($status); ?>"
+            class="btn <?= $i == $page ? 'btn-primary' : 'btn-secondary'; ?>">
+        <?= $i; ?>
+        </a>
+        <?php endfor; ?>
+        <?php if($page < $totalPages): ?>
+            <a href="?page=students&page_number=<?= $page +1; ?>&search=<?= urlencode($search); ?>&university_id=<?= urlencode($university_id); ?>&status=<?= urlencode($status); ?>"
+            class="btn btn-secondary">
+           Next ➡
+        </a>
+        <?php endif; ?>
+
+    </div>
+    <?php endif; ?>
+
 <?php require_once __DIR__ . '/../layouts/footer.php'; ?>

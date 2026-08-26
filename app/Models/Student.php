@@ -22,20 +22,85 @@ class Student
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function search($search='', $university_id='', $status='')
+   public function search($search = '', $university_id = '', $status = '', $limit = 10, $offset = 0)
+{
+    $sql = "SELECT students.*, universities.name AS university_name
+            FROM students
+            JOIN universities
+            ON students.university_id = universities.id
+            WHERE 1=1";
+
+    $params = [];
+
+    // Search
+    if (!empty($search)) {
+
+        $sql .= " AND (
+            students.registration_number LIKE :search1
+            OR students.first_name LIKE :search2
+            OR students.last_name LIKE :search3
+            OR students.email LIKE :search4
+        )";
+
+        $searchValue = "%" . $search . "%";
+
+        $params['search1'] = $searchValue;
+        $params['search2'] = $searchValue;
+        $params['search3'] = $searchValue;
+        $params['search4'] = $searchValue;
+    }
+
+    // University filter
+    if (!empty($university_id)) {
+
+        $sql .= " AND students.university_id = :university_id";
+
+        $params['university_id'] = $university_id;
+    }
+
+    // Status filter
+    if (!empty($status)) {
+
+        $sql .= " AND students.status = :status";
+
+        $params['status'] = $status;
+    }
+
+    // Pagination
+    $limit = (int) $limit;
+    $offset = (int) $offset;
+
+    if ($limit < 1) {
+        $limit = 10;
+    }
+
+    if ($offset < 0) {
+        $offset = 0;
+    }
+
+    $sql .= " ORDER BY students.id DESC";
+    $sql .= " LIMIT " . $limit . " OFFSET " . $offset;
+
+    // Prepare
+    $stmt = $this->db->prepare($sql);
+
+    // Execute only the parameters that actually exist in the SQL
+    $stmt->execute($params);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+    public function countSearch($search='', $university_id='', $status='')
     {
-        $sql="SELECT students.*, universities.name AS university_name 
+        $sql="SELECT COUNT(*)
         FROM students
         JOIN universities
-        ON students.university_id=universities.id
+        ON students.university_id = universities.id
         WHERE 1=1";
 
         $params=[];
-
-        //search by registration number, first name, last name or email
-
+        //Search
         if(!empty($search)){
-            $sql .=" AND (
+            $sql .= " AND (
             students.registration_number LIKE :search1
             OR students.first_name LIKE :search2
             OR students.last_name LIKE :search3
@@ -43,29 +108,30 @@ class Student
             )";
 
             $searchValue="%" . $search . "%";
-            $params['search1']= $searchValue;
-            $params['search2']= $searchValue;
-            $params['search3']= $searchValue;
-            $params['search4']= $searchValue;
+
+            $params['search1']=$searchValue;
+            $params['search2']=$searchValue;
+            $params['search3']=$searchValue;
+            $params['search4']=$searchValue;
 
 
         }
-        //Filter by university
+        //University Filter
         if(!empty($university_id)){
-            $sql .=" AND students.university_id = :university_id";
+            $sql .=" AND students.university_id= :university_id";
+
             $params['university_id']= $university_id;
         }
-        //Filter by status 
+        //status filter
         if(!empty($status)){
-            $sql .=" AND students.status = :status";
-            $params['status']= $status;
-        }
-        $sql .= " ORDER BY students.id DESC";
+            $sql .=" AND students.status= :status";
 
-        $stmt = $this->db->prepare($sql);
+            $params['status']=$status;
+        }
+        $stmt=$this->db->prepare($sql);
         $stmt->execute($params);
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchColumn(); 
     }
     // Find one student
     public function find($id)
