@@ -15,7 +15,7 @@
     </li>
 
     <li>
-        <a href="#">👩 Lecturers</a>
+        <a href="?page=lecturers">👩 Lecturers</a>
     </li>
 
     <li>

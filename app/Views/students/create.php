@@ -35,13 +35,13 @@ enctype="multipart/form-data">
 <input type="date" name="date_of_birth">
 
 <label>Email</label>
-<input type="email" name="email">
+<input type="email" name="email" required>
 
 <label>Phone</label>
 <input type="text" name="phone">
 
 <label>Photo</label>
-<input type="file" name="photo">
+<input type="file" name="photo" accept="image/**">
 
 <label>Country</label>
 <input type="text" name="country">

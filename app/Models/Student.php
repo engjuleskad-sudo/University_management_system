@@ -245,7 +245,7 @@ class Student
    public function deactivate($id)
    {
     $sql="UPDATE students
-     SET status='Inactive '
+     SET status='Inactive'
      WHERE id= :id ";
 
      $stmt=$this->db->prepare($sql);

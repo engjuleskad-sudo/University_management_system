@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../Controllers/AuthController.php';
 require_once __DIR__ . '/../Controllers/UniversityController.php';
 require_once __DIR__ . '/../Controllers/StudentController.php';
+require_once __DIR__  . '/../Controllers/LecturerController.php';
 
 class Router 
 {
@@ -11,7 +12,6 @@ class Router
 
         $page=$_GET['page'] ??'login';
         
-
         switch($page){
             case 'login':
 
@@ -114,6 +114,32 @@ class Router
                 $controller= new StudentController();
                 $controller->index();
                 break;
+            case 'lecturers':
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+                    exit;
+                }
+
+                $controller= new LecturerController();
+                $controller->index();
+                break;
+            case 'add-lecturer':
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+                    exit;
+                }
+
+                $controller= new LecturerController();
+                $controller->create();
+                break;
+            case 'store-lecturer':
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+                    exit;
+                }
+                $controller= new LecturerController();
+                $controller->store();
+                break;
           
             case 'add-student':
                 if(!isset($_SESSION['user_id'])){
@@ -169,6 +195,14 @@ class Router
                 }
                 $controller=new StudentController();
                 $controller->activate();
+                break;
+            case 'view-lecturer':
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+                    exit;
+                }
+                $controller=new LecturerController();
+                $controller->show();
                 break;
             
 
