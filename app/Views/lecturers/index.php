@@ -43,7 +43,7 @@
                 </td>
                 <td>
                     <?= htmlspecialchars(
-                        $lecturer['first_name']  . '' . $lecturer['last_name']); ?>
+                        $lecturer['first_name']  . ' ' . $lecturer['last_name']); ?>
                    
                 </td>
                 
