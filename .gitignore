@@ -1,0 +1,10 @@
+# Uploaded lecturer and student files
+/public/assets/uploads/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Database backups
+*.sql

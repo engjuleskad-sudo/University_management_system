@@ -4,14 +4,14 @@ require_once __DIR__ . '/../Controllers/UniversityController.php';
 require_once __DIR__ . '/../Controllers/StudentController.php';
 require_once __DIR__  . '/../Controllers/LecturerController.php';
 
-class Router 
+class Router
 {
-    public function dispatch(): void 
+    public function dispatch(): void
     {
-       
+
 
         $page=$_GET['page'] ??'login';
-        
+
         switch($page){
             case 'login':
 
@@ -23,7 +23,6 @@ class Router
                 else{
                     $controller->showLogin();
                 }
-
                 break;
 
             case 'dashboard':
@@ -33,7 +32,7 @@ class Router
                     exit;
                 }
                 require_once __DIR__ . '/../Views/dashboard.php';
-                
+
                 break;
             case 'universities':
                 if(!isset($_SESSION['user_id'])){
@@ -66,7 +65,7 @@ class Router
                 $controller->show();
 
                 break;
-             
+
             case 'edit-university':
                 if(!isset($_SESSION['user_id'])){
                     header("Location: ?page=login");
@@ -75,7 +74,7 @@ class Router
                 $controller=new UniversityController();
                 if($_SERVER['REQUEST_METHOD']==='POST'){
                     $controller->update();
-                    
+
                 }
                 else{
                     $controller->edit();
@@ -103,7 +102,7 @@ class Router
                 }
                 $controller=new UniversityController();
                 $controller->activate();
-                
+
                 exit;
             case 'students':
                 if(!isset($_SESSION['user_id'])){
@@ -140,13 +139,13 @@ class Router
                 $controller= new LecturerController();
                 $controller->store();
                 break;
-          
+
             case 'add-student':
                 if(!isset($_SESSION['user_id'])){
                     header("Location: ?page=login");
                     exit;
                 }
-                   
+
                 $controller=new StudentController();
                 $controller->create();
                 break;
@@ -170,7 +169,6 @@ class Router
                 {
                     $controller->edit();
                 }
-                
                 break;
             case 'show-student':
                 if(!isset($_SESSION['user_id'])){
@@ -196,6 +194,19 @@ class Router
                 $controller=new StudentController();
                 $controller->activate();
                 break;
+            case 'edit-lecturer':
+                if(!isset($_SESSION['user_id'])){
+                    header("Location: ?page=login");
+                    exit;
+                }
+                $controller=new LecturerController();
+
+                if($_SERVER['REQUEST_METHOD']==='POST'){
+                    $controller->update();
+                }else{
+                    $controller->edit();
+                }
+                break;
             case 'view-lecturer':
                 if(!isset($_SESSION['user_id'])){
                     header("Location: ?page=login");
@@ -204,16 +215,15 @@ class Router
                 $controller=new LecturerController();
                 $controller->show();
                 break;
-            
 
 
             default:
                  echo "<h2>404 Page Not Found!</h2>";
                      break;
-            
+
 
         }
-        
+
     }
  }
 

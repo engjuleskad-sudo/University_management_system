@@ -71,8 +71,8 @@ class Lecturer
             ':first_name' => $data['first_name'],
             ':last_name' => $data['last_name'],
             ':gender' => $data['gender'],
-            ':date_of_birth' => !empty($data['date_of_birth']) 
-                                ? $data['date_of_birth'] 
+            ':date_of_birth' => !empty($data['date_of_birth'])
+                                ? $data['date_of_birth']
                                 : null,
 
             ':email' => $data['email'],
@@ -124,5 +124,76 @@ class Lecturer
         ]);
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function update($id, $data)
+    {
+        $sql= "UPDATE lecturers SET
+        university_id = :university_id,
+        staff_number = :staff_number,
+        first_name = :first_name,
+        last_name = :last_name,
+        gender = :gender,
+        date_of_birth = :date_of_birth,
+        email = :email,
+        phone = :phone,
+        photo = :photo,
+        department = :department,
+        specialization = :specialization,
+        qualification = :qualification,
+        employment_type = :employment_type,
+        country = :country,
+        province = :province,
+        city = :city,
+        address = :address,
+        status = :status
+        WHERE id= :id";
+
+        $stmt=$this->db->prepare($sql);
+
+        return $stmt->execute([
+           ':university_id' => $data['university_id'],
+            ':staff_number' => $data['staff_number'],
+            ':first_name' => $data['first_name'],
+            ':last_name' => $data['last_name'],
+            ':gender' => $data['gender'],
+            ':date_of_birth' => !empty($data['date_of_birth'])
+                                ? $data['date_of_birth']
+                                : null,
+
+            ':email' => $data['email'],
+            ':phone' => !empty($data['phone'])
+                                    ? $data['phone']
+                                    : null,
+           ':photo' => !empty($data['photo'])
+                                    ? $data['photo']
+                                    : null,
+
+            ':department' => !empty($data['department'])
+                                    ?$data['department']
+                                    : null,
+            ':specialization' => !empty($data['specialization'])
+                                    ?$data['specialization']
+                                    :null,
+            ':qualification' => !empty($data['qualification'])
+                                    ?$data['qualification']
+                                    : null,
+            ':employment_type' => !empty($data['employment_type'])
+                                    ?$data['employment_type']
+                                    : null,
+            ':country' => !empty($data['country'])
+                                    ?$data['country']
+                                    : null,
+            ':province' => !empty($data['province'])
+                                    ?$data['province']
+                                    : null,
+            ':city' => !empty($data['city'])
+                                    ?$data['city']
+                                    : null,
+            ':address' => !empty($data['address'])
+                                    ?$data['address']
+                                    : null,
+            ':status' => $data['status'],
+            ':id' => $id
+        ]);
     }
 }

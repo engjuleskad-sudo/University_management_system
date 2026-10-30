@@ -1,11 +1,11 @@
 <?php require_once __DIR__ . '/../layouts/header.php'; ?>
 <?php require_once __DIR__ . '/../layouts/sidebar.php'; ?>
 
-<h1>👩‍🏫 Lecturers</h1>
+<h1> Lecturers</h1>
 
 <p>
     <a href="?page=add-lecturer" class="btn btn-primary">
-        ➕ Add New Lecturer 
+         Add New Lecturer
     </a>
 
     <table cellpadding="10">
@@ -28,7 +28,7 @@
                 </td>
                 <td>
                     <?php if(!empty($lecturer['photo'])): ?>
-                        <img 
+                        <img
                         src="assets/uploads/lecturers/<?= htmlspecialchars($lecturer['photo']); ?>"
                          alt="Lecturer Photo"
                          width="50"
@@ -44,9 +44,9 @@
                 <td>
                     <?= htmlspecialchars(
                         $lecturer['first_name']  . ' ' . $lecturer['last_name']); ?>
-                   
+
                 </td>
-                
+
                 <td>
                     <?= htmlspecialchars($lecturer['university_name']); ?>
                 </td>
@@ -69,23 +69,29 @@
                         <?php endif; ?>
 
                 </td>
-                <td>
-                    <a href="?page=view-lecturer&id=<?= $lecturer['id']; ?>"
-                    class="btn btn-info">
-                         👁  View 
-                    </a>
-                </td>
+               <td>
+    <a href="?page=view-lecturer&id=<?= $lecturer['id']; ?>"
+       class="btn btn-info">
+        👁 View
+    </a>
+
+    <a href="?page=edit-lecturer&id=<?= $lecturer['id']; ?>"
+       class="btn btn-edit-lecturer">
+        Edit
+    </a>
+</td>
+</tr>
             </tr>
             <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="7" style="text-align:center;">
+                    <td colspan="9" style="text-align:center;">
                         No lecturer found.
 
                     </td>
                 </tr>
             <?php endif; ?>
-        
+
 
     </table>
 </p>
